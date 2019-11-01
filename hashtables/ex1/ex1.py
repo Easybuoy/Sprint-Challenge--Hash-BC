@@ -20,7 +20,6 @@ def get_indices_of_item_weights(weights, length, limit):
         for i in range(len(weights)):
             hash_table_insert(hash_table, weights[i], i)
             if (weights[i] == difference and i != index):
-
                 response.append(hash_table_retrieve(hash_table, weights[i]))
 
         index += 1
