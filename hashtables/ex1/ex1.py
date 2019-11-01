@@ -15,15 +15,12 @@ def get_indices_of_item_weights(weights, length, limit):
     index = 0
     hash_table = HashTable(length)
 
-
-    for i in range(len(weights)):
-        hash_table_insert(hash_table, weights[i], i)
-
     while index < length:
         difference = limit - weights[index]
-        print(difference)
         for i in range(len(weights)):
-            if (weights[i] == difference):
+            hash_table_insert(hash_table, weights[i], i)
+            if (weights[i] == difference and i != index):
+
                 response.append(hash_table_retrieve(hash_table, weights[i]))
 
         index += 1
@@ -33,7 +30,7 @@ def get_indices_of_item_weights(weights, length, limit):
     return response
 
 
-print(get_indices_of_item_weights([9], 1, 9))
+print(get_indices_of_item_weights([4, 4], 2, 8))
 # print(get_indices_of_item_weights([4, 6, 10, 15, 16], 5, 21))
 
 
