@@ -30,7 +30,7 @@ def proof_of_work(last_proof):
     #  TODO: Your code here
     block_string = json.dumps(last_proof, sort_keys=True).encode()
     while valid_proof(block_string, proof) is False:
-        proof += 1
+        proof += random.getrandbits(32)
 
 
     print("Proof found: " + str(proof) + " in " + str(timer() - start))
@@ -51,7 +51,7 @@ def valid_proof(last_hash, proof):
     guess_hash = hashlib.sha256(guess).hexdigest()
     # return guess validity
 
-    return last_hash[-6:] == guess_hash[6:]
+    return last_hash[-6:] == guess_hash[:6]
 
 
 if __name__ == '__main__':
