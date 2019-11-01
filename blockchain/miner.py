@@ -25,7 +25,7 @@ def proof_of_work(last_proof):
     start = timer()
 
     print("Searching for next proof")
-    proof = 10000000
+    proof = 100
 
     #  TODO: Your code here
     block_string = json.dumps(last_proof, sort_keys=True).encode()
