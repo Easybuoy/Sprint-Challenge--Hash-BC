@@ -25,12 +25,12 @@ def proof_of_work(last_proof):
     start = timer()
 
     print("Searching for next proof")
-    proof = 0
+    proof = 1000000
 
     #  TODO: Your code here
     block_string = json.dumps(last_proof, sort_keys=True).encode()
     while valid_proof(block_string, proof) is False:
-        proof = random.getrandbits(32)
+        proof += random.getrandbits(32)
 
 
     print("Proof found: " + str(proof) + " in " + str(timer() - start))
@@ -47,13 +47,13 @@ def valid_proof(last_hash, proof):
 
     # TODO: Your code here!
     guess = str(proof).encode()
-    last_hash = str(last_hash).encode()
-    last_hash = hashlib.sha256(last_hash).hexdigest()
+    last_hash_hash = str(last_hash).encode()
+    last_hash_hash = hashlib.sha256(last_hash).hexdigest()
     # hash the guess
     guess_hash = hashlib.sha256(guess).hexdigest()
     # return guess validity
 
-    return str(last_hash[-6:]) == str(guess_hash[:6])
+    return str(last_hash_hash[-6:]) == str(guess_hash[:6])
 
 
 if __name__ == '__main__':
